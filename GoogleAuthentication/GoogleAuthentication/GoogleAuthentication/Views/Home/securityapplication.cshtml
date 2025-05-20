@@ -1,0 +1,23 @@
+﻿
+@model GoogleAuthentication.Models.ScriptCheckModel
+@{
+    ViewBag.Title = "securityapplication";
+}
+
+<h2>securityapplication</h2>
+
+@using (Html.BeginForm("Check", "Script", FormMethod.Post))
+
+{
+    <div>
+        <label for="ScriptContent">Enter Script Content:</label><br />
+        @Html.TextAreaFor(m => m.ScriptContent, new { rows = 6, cols = 80 })
+    </div>
+    <br />
+    <input type="submit" value="Check Script" class="btn btn-primary" />
+}
+
+@if (Model != null && !string.IsNullOrEmpty(Model.Result))
+{
+    <h3>Result: <span style="color:@(Model.Result == "Malicious" ? "red" : "green")">@Model.Result</span></h3>
+}
